@@ -227,6 +227,18 @@
       background: rgba(31, 41, 55, 0.95);
     }
 
+    .btn-outline {
+      border-color: rgba(148, 163, 184, 0.7);
+      color: var(--muted);
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(250, 204, 107, 0.7);
+      color: var(--text);
+      background: rgba(15, 23, 42, 0.8);
+    }
+
     .hero-meta {
       font-size: 0.8rem;
       color: var(--muted);
@@ -464,6 +476,32 @@
       padding-bottom: 1px;
     }
 
+    .contact-profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .contact-photo {
+      width: 72px;
+      height: 72px;
+      border-radius: 999px;
+      object-fit: cover;
+      border: 2px solid rgba(250, 204, 107, 0.7);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.6);
+    }
+
+    .contact-profile-text {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .contact-profile-text strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
     footer {
       margin-top: 34px;
       font-size: 0.78rem;
@@ -510,6 +548,13 @@
 
       .contact-card {
         grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contact-profile {
+        flex-direction: row;
         align-items: center;
       }
     }
@@ -565,7 +610,7 @@
           <div class="hero-cta">
             <a href="#contact" class="btn btn-primary">Let’s Work Together</a>
             <a href="#experience" class="btn btn-secondary">See My Work</a>
-            <a href="#resume" class="link-ghost">Download Resume</a>
+            <a href="Juan_Zapata_CV.pdf" class="link-ghost">Download Resume</a>
           </div>
           <p class="hero-meta">
             Focused on ethical, efficient, and process-driven operations that scale.
@@ -904,15 +949,42 @@
               I’m available to connect and explore how I can help.
             </p>
             <p class="contact-small" style="margin-top: 10px;">
-              You can connect via email, LinkedIn, or by booking a meeting using your preferred calendar tool
-              once this page is integrated.
+              You can connect via meeting, email, or WhatsApp using the options here.
             </p>
           </div>
-          <div class="contact-actions">
-            <a href="https://calendly.com/juanelitecloser/30min" class="btn btn-primary">Schedule a Meeting</a>
-            <a href="mailto:juanelitecloser@gmail.com?subject=Consult%20about%20el%20proyect">Email</a>
-            <a href="https://wa.me/573226023465?text=Hello%20Juan%2C%20I%E2%80%99m%20reaching%20out%20for%20more%20information%20about%20your%20services.%20Could%20we%20schedule%20a%20brief%20call%3F ">Whatsapp</a>
-            <a href="/utilities/PDF/Juan_Zapata_CV.pdf" class="link-ghost">Download Resume (PDF)</a>
+          <div>
+            <div class="contact-actions">
+              <a href="https://calendly.com/juanelitecloser/30min" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                Schedule a Meeting
+              </a>
+              <a href="mailto:juanelitecloser@gmail.com?subject=Consult%20about%20project" class="btn btn-secondary">
+                Email me
+              </a>
+              <a
+                href="https://wa.me/573226023465?text=Hello%20Juan%2C%20I%E2%80%99m%20reaching%20out%20for%20more%20information%20about%20your%20services.%20Could%20we%20schedule%20a%20brief%20call%3F"
+                class="btn btn-outline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                WhatsApp
+              </a>
+              <a href="utilities/PDF/Juan_Zapata_CV.pdf" class="link-ghost" target="_blank" rel="noopener noreferrer">
+                Download Resume (PDF)
+              </a>
+            </div>
+
+            <div class="contact-profile">
+              <img
+                src="Juan-Zapata.jpg"
+                alt="Juan Zapata"
+                class="contact-photo"
+              />
+              <div class="contact-profile-text">
+                <strong>Juan Zapata</strong><br />
+                Operations &amp; AI Automation<br />
+                Based in 🇨🇴 &bull; Available remotely
+              </div>
+            </div>
           </div>
         </div>
       </section>
