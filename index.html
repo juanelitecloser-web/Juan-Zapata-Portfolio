@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Juan Zapata | Operations & AI Automation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Juan Zapata - Project & production management with AI-powered automation. I build systems that make your business run smoother." />
+  <style>
+    :root {
+      --bg: #0b0b0d;
+      --bg-alt: #111216;
+      --card: #15161b;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: #27272f;
+      --accent: #facc6b; /* gold */
+      --accent-soft: rgba(250, 204, 107, 0.18);
+      --radius-lg: 18px;
+      --radius-full: 999px;
+      --shadow-soft: 0 18px 50px rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+      background: radial-gradient(circle at top left, #18181f 0, #020617 50%, #020617 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 18px 18px 64px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.92), rgba(2, 6, 23, 0.75), transparent);
+    }
+
+    .header-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 10px 18px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(250, 204, 107, 0.7);
+      background: radial-gradient(circle at 30% 0, var(--accent) 0, #854d0e 45%, #1c1917 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 8px 25px rgba(250, 204, 107, 0.45);
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-text span:first-child {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .logo-text span:last-child {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    nav {
+      display: none;
+      gap: 18px;
+      align-items: center;
+      font-size: 0.88rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      padding: 4px 0;
+    }
+
+    nav a:hover {
+      color: var(--text);
+    }
+
+    .nav-cta {
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(250, 204, 107, 0.5);
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      text-decoration: none;
+      color: var(--accent);
+      background: radial-gradient(circle at top left, rgba(250, 204, 107, 0.18), transparent);
+    }
+
+    main {
+      margin-top: 20px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      background: rgba(24, 24, 27, 0.85);
+      border: 1px solid rgba(250, 204, 107, 0.35);
+      font-size: 0.75rem;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(250, 204, 107, 0.25);
+    }
+
+    .hero {
+      display: grid;
+      gap: 26px;
+      padding: 22px 18px 26px;
+      border-radius: 28px;
+      background: radial-gradient(circle at top left, rgba(250, 204, 107, 0.16), transparent 55%),
+                  linear-gradient(to bottom right, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.9));
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 4.1vw, 2.7rem);
+      font-weight: 650;
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+      margin-bottom: 14px;
+    }
+
+    .hero-sub {
+      font-size: 0.98rem;
+      color: #e5e7eb;
+      max-width: 620px;
+      margin-bottom: 18px;
+    }
+
+    .hero-sub span {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 20px;
+      border-radius: var(--radius-full);
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.1s ease, border-color 0.1s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, #facc6b, #d97706);
+      color: #111827;
+      font-weight: 600;
+      box-shadow: 0 12px 32px rgba(250, 204, 107, 0.45);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(250, 204, 107, 0.6);
+    }
+
+    .btn-secondary {
+      border-color: rgba(148, 163, 184, 0.7);
+      color: var(--text);
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(250, 204, 107, 0.6);
+      background: rgba(31, 41, 55, 0.95);
+    }
+
+    .hero-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-aside {
+      border-radius: 20px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 14px 14px 14px;
+      background: radial-gradient(circle at top left, rgba(250, 204, 107, 0.15), transparent 55%),
+                  rgba(15, 23, 42, 0.96);
+    }
+
+    .aside-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .aside-list {
+      list-style: none;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .aside-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .aside-bullet {
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    section {
+      margin-top: 34px;
+      padding: 0 2px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      gap: 8px;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .section-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .cards-3,
+    .cards-2 {
+      display: grid;
+      gap: 14px;
+    }
+
+    .card {
+      background: linear-gradient(to bottom right, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.96));
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 14px 14px 16px;
+    }
+
+    .card h3 {
+      font-size: 0.96rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .card p,
+    .card ul {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .pill {
+      font-size: 0.75rem;
+      padding: 4px 9px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .about-text {
+      font-size: 0.9rem;
+      color: #e5e7eb;
+    }
+
+    .about-text p + p {
+      margin-top: 8px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 10px;
+    }
+
+    .stack-group-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .stack-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .stack-pill {
+      font-size: 0.78rem;
+      padding: 3px 9px;
+      border-radius: var(--radius-full);
+      background: rgba(24, 24, 27, 0.9);
+      border: 1px solid rgba(63, 63, 70, 0.9);
+      color: var(--muted);
+    }
+
+    .experience-item + .experience-item {
+      margin-top: 14px;
+      border-top: 1px dashed rgba(63, 63, 70, 0.9);
+      padding-top: 14px;
+    }
+
+    .experience-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .experience-company {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .experience-role {
+      font-size: 0.78rem;
+      color: var(--accent);
+    }
+
+    .experience-body {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .experience-body ul {
+      margin-top: 4px;
+      padding-left: 16px;
+    }
+
+    .experience-body li {
+      margin-bottom: 2px;
+    }
+
+    .services-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .service-block h3 {
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .service-block p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .service-block ul {
+      font-size: 0.83rem;
+      color: var(--muted);
+      padding-left: 16px;
+    }
+
+    .contact-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(250, 204, 107, 0.45);
+      padding: 18px 16px 18px;
+      background: linear-gradient(to right, rgba(250, 204, 107, 0.15), rgba(15, 23, 42, 0.96));
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-text {
+      font-size: 0.9rem;
+      color: #e5e7eb;
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .contact-small {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .link-ghost {
+      font-size: 0.82rem;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px dotted rgba(250, 204, 107, 0.6);
+      padding-bottom: 1px;
+    }
+
+    footer {
+      margin-top: 34px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      padding-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--accent);
+    }
+
+    @media (min-width: 720px) {
+      nav {
+        display: flex;
+      }
+
+      .hero {
+        grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+        align-items: center;
+        padding: 26px 26px 28px;
+      }
+
+      .hero-aside {
+        padding: 16px 16px 18px;
+      }
+
+      .cards-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .cards-2 {
+        grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      }
+
+      .contact-card {
+        grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
+        align-items: center;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .page {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .header-inner {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-mark">JZ</div>
+        <div class="logo-text">
+          <span>Juan Zapata</span>
+          <span>Operations & AI Automation</span>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#services">Services</a>
+        <a href="#contact" class="nav-cta">Let’s talk</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page">
+    <main>
+      <!-- Hero -->
+      <section class="hero" id="top">
+        <div>
+          <div class="badge">
+            <span class="badge-dot"></span>
+            <span>Project & production management • AI-powered systems</span>
+          </div>
+          <h1 class="hero-title">I build systems that make your business run smoother.</h1>
+          <p class="hero-sub">
+            I combine project and production management with <span>AI-driven automation</span> to help companies
+            reduce workload, cut costs, and create workflows that actually support their team. Real solutions,
+            built with clarity and intention.
+          </p>
+          <div class="hero-cta">
+            <a href="#contact" class="btn btn-primary">Let’s Work Together</a>
+            <a href="#experience" class="btn btn-secondary">See My Work</a>
+            <a href="#resume" class="link-ghost">Download Resume</a>
+          </div>
+          <p class="hero-meta">
+            Focused on ethical, efficient, and process-driven operations that scale.
+          </p>
+        </div>
+        <aside class="hero-aside">
+          <div class="aside-title">Where I bring the most value</div>
+          <ul class="aside-list">
+            <li>
+              <span class="aside-bullet"></span>
+              <span>Restructuring teams and departments for clarity and performance.</span>
+            </li>
+            <li>
+              <span class="aside-bullet"></span>
+              <span>Designing workflows that support sales, operations, and fulfillment.</span>
+            </li>
+            <li>
+              <span class="aside-bullet"></span>
+              <span>Implementing AI agents and automations that reduce manual workload.</span>
+            </li>
+          </ul>
+        </aside>
+      </section>
+
+      <!-- Value Snapshot -->
+      <section aria-labelledby="value">
+        <div class="section-heading">
+          <h2 class="section-title" id="value">How I create impact</h2>
+          <p class="section-note">A mix of operations, production, and AI automation.</p>
+        </div>
+        <div class="cards-3">
+          <div class="card">
+            <h3>Operations & Workflow Optimization</h3>
+            <p>
+              Streamlining processes across sales, service, and fulfillment so teams work with clarity, not chaos.
+            </p>
+          </div>
+          <div class="card">
+            <h3>AI-Powered Automation</h3>
+            <p>
+              Implementing practical automation and AI agents that remove repetitive tasks and reduce costs.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Project & Production Management</h3>
+            <p>
+              Keeping projects, teams, and deliverables aligned so nothing falls through the cracks.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Me -->
+      <section id="about" aria-labelledby="about-title">
+        <div class="section-heading">
+          <h2 class="section-title" id="about-title">About me</h2>
+          <p class="section-note">Professional, responsible, and focused on building reliable systems.</p>
+        </div>
+        <div class="cards-2">
+          <div class="card">
+            <div class="about-text">
+              <p>
+                I’m <strong>Juan Zapata</strong>, a project and production management professional with a strong focus
+                on operational efficiency, workflow optimization, and AI-driven automation. I help companies streamline
+                their internal processes, restructure departments, and build systems that reduce workload, cut costs,
+                and improve team performance.
+              </p>
+              <p>
+                My background includes hands-on experience in production management, fulfillment oversight, and
+                cross-department coordination. I specialize in identifying operational gaps, improving response times,
+                and designing workflows that support scalable growth. Whether it’s optimizing a fulfillment pipeline or
+                implementing AI-powered automation, my approach remains consistent: understand the problem, simplify
+                the process, and build practical solutions that last.
+              </p>
+              <p>
+                I’ve contributed to operational restructuring across multiple organizations, including Roofer.com,
+                RapidTax, and Exigo Buys Houses. My work is grounded in responsibility, clear communication, and a
+                commitment to doing things the right way.
+              </p>
+              <p>
+                Above all, I value professionalism, ethical work, and delivering results that create measurable impact.
+                My goal is simple—to help businesses work smarter through systems that are efficient, reliable, and
+                built with intention.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <h3>How I work</h3>
+            <p class="section-note" style="margin-bottom: 6px;">Key traits that guide every project.</p>
+            <div class="stack">
+              <div>
+                <div class="stack-group-title">Personality</div>
+                <div class="stack-pills">
+                  <span class="stack-pill">Outgoing</span>
+                  <span class="stack-pill">Humble</span>
+                  <span class="stack-pill">Cheerful</span>
+                </div>
+              </div>
+              <div>
+                <div class="stack-group-title">Work style</div>
+                <div class="stack-pills">
+                  <span class="stack-pill">Ethical</span>
+                  <span class="stack-pill">Efficient</span>
+                  <span class="stack-pill">Proactive</span>
+                  <span class="stack-pill">Process-driven</span>
+                  <span class="stack-pill">Analytical</span>
+                </div>
+              </div>
+              <div>
+                <div class="stack-group-title">Focus areas</div>
+                <div class="stack-pills">
+                  <span class="stack-pill">Operations</span>
+                  <span class="stack-pill">Production</span>
+                  <span class="stack-pill">Fulfillment</span>
+                  <span class="stack-pill">AI automation</span>
+                  <span class="stack-pill">Workflow design</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section id="skills" aria-labelledby="skills-title">
+        <div class="section-heading">
+          <h2 class="section-title" id="skills-title">Skills</h2>
+          <p class="section-note">A combination of operational, management, and technical capabilities.</p>
+        </div>
+        <div class="cards-2">
+          <div class="card">
+            <h3>Core professional skills</h3>
+            <ul>
+              <li>Project & production management</li>
+              <li>Workflow design & optimization</li>
+              <li>Department restructuring</li>
+              <li>Fulfillment & operations oversight</li>
+              <li>Process improvement & quality control</li>
+              <li>Team coordination & communication</li>
+              <li>Problem-solving & system analysis</li>
+              <li>AI-driven automation implementation</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Tools & platforms</h3>
+            <div class="stack" style="margin-top: 4px;">
+              <div>
+                <div class="stack-group-title">CRM platforms</div>
+                <div class="stack-pills">
+                  <span class="stack-pill">Salesforce</span>
+                  <span class="stack-pill">HubSpot</span>
+                  <span class="stack-pill">Pipedrive</span>
+                  <span class="stack-pill">GoHighLevel</span>
+                  <span class="stack-pill">JobNimbus</span>
+                </div>
+              </div>
+              <div>
+                <div class="stack-group-title">Project management</div>
+                <div class="stack-pills">
+                  <span class="stack-pill">Monday.com</span>
+                  <span class="stack-pill">Airtable</span>
+                  <span class="stack-pill">ClickUp</span>
+                </div>
+              </div>
+              <div>
+                <div class="stack-group-title">Automation</div>
+                <div class="stack-pills">
+                  <span class="stack-pill">Zapier</span>
+                  <span class="stack-pill">n8n</span>
+                </div>
+              </div>
+              <div>
+                <div class="stack-group-title">Communication & collaboration</div>
+                <div class="stack-pills">
+                  <span class="stack-pill">Slack</span>
+                  <span class="stack-pill">Microsoft Teams</span>
+                  <span class="stack-pill">Trello</span>
+                  <span class="stack-pill">Google Workspace</span>
+                </div>
+              </div>
+              <div>
+                <div class="stack-group-title">AI tools</div>
+                <div class="stack-pills">
+                  <span class="stack-pill">ChatGPT</span>
+                  <span class="stack-pill">Copilot</span>
+                  <span class="stack-pill">Gemini</span>
+                  <span class="stack-pill">H2O</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience / Portfolio -->
+      <section id="experience" aria-labelledby="experience-title">
+        <div class="section-heading">
+          <h2 class="section-title" id="experience-title">Experience & project highlights</h2>
+          <p class="section-note">Selected work across different teams and organizations.</p>
+        </div>
+        <div class="card">
+          <div class="experience-item">
+            <div class="experience-header">
+              <div>
+                <div class="experience-company">Roofer.com</div>
+                <div class="experience-role">Operational restructuring • Workflow & production optimization</div>
+              </div>
+            </div>
+            <div class="experience-body">
+              <ul>
+                <li>Restructured the remote sales department, establishing clear KPIs and an LMS-based training system.</li>
+                <li>Hired and trained both U.S.-based and international talent to support growth.</li>
+                <li>Organized a project management pipeline of 100+ clients and built Pipedrive templates for Good–Better–Best estimates.</li>
+                <li>Worked alongside the COO to improve the customer experience journey and internal workflows.</li>
+                <li>Created production and fulfillment templates for work orders and material orders, reducing time spent on manual tasks.</li>
+                <li>Supported insurance supplement processes by aligning Scope of Loss documentation with fulfillment operations.</li>
+                <li>Led outreach for new talent, managing job postings and personally training new hires.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="experience-item">
+            <div class="experience-header">
+              <div>
+                <div class="experience-company">RapidTax / WebMarkt</div>
+                <div class="experience-role">Customer service scaling • Outsourcing • Admin support</div>
+              </div>
+            </div>
+            <div class="experience-body">
+              <ul>
+                <li>Grew a one-person customer service role into a four-person team, improving responsiveness and workload distribution.</li>
+                <li>Outsourced and trained data entry agents to support bookkeeping and account verification.</li>
+                <li>Implemented KPIs to guide performance and maintain quality standards.</li>
+                <li>Moved into an administrative role for WebMarkt (RapidTax’s marketing branch), helping the owner keep focus on CEO-level priorities.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="experience-item">
+            <div class="experience-header">
+              <div>
+                <div class="experience-company">Exigo Buys Houses</div>
+                <div class="experience-role">CRM design • Lead management • Process automation</div>
+              </div>
+            </div>
+            <div class="experience-body">
+              <ul>
+                <li>Built a custom CRM with a power dialer to ensure new leads were contacted quickly and consistently.</li>
+                <li>Created clear KPIs for follow-up, deal progression, and lead qualification.</li>
+                <li>Defined call volume expectations and follow-up rules so no deal remained untouched beyond defined timeframes.</li>
+                <li>Improved pipeline cleanliness and ensured transparent visibility across stages.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services -->
+      <section id="services" aria-labelledby="services-title">
+        <div class="section-heading">
+          <h2 class="section-title" id="services-title">What I can help with</h2>
+          <p class="section-note">Practical services focused on real operational outcomes.</p>
+        </div>
+        <div class="card">
+          <div class="services-grid">
+            <div class="service-block">
+              <h3>Workflow & operations optimization</h3>
+              <p>I help identify and remove friction across your departments.</p>
+              <ul>
+                <li>Map and redesign key processes.</li>
+                <li>Improve fulfillment and production pipelines.</li>
+                <li>Strengthen customer experience workflows.</li>
+                <li>Support scalable, documented operations.</li>
+              </ul>
+            </div>
+            <div class="service-block">
+              <h3>AI-powered automation</h3>
+              <p>I implement smart automations that support your team instead of replacing it.</p>
+              <ul>
+                <li>AI agents for customer service and lead qualification.</li>
+                <li>Automation of repetitive, manual tasks.</li>
+                <li>Integration with tools like Zapier and n8n.</li>
+                <li>Cost reduction through targeted automation.</li>
+              </ul>
+            </div>
+            <div class="service-block">
+              <h3>Project & production management</h3>
+              <p>Keeping initiatives moving, aligned, and under control.</p>
+              <ul>
+                <li>Cross-department coordination and tracking.</li>
+                <li>KPI and performance dashboard creation.</li>
+                <li>Template and SOP development.</li>
+                <li>Support for restructuring efforts.</li>
+              </ul>
+            </div>
+            <div class="service-block">
+              <h3>CRM & pipeline optimization</h3>
+              <p>I design CRMs that match your real world operations.</p>
+              <ul>
+                <li>Pipeline setup and cleanup.</li>
+                <li>Automated follow-ups and reminders.</li>
+                <li>Lead management rules so nothing is missed.</li>
+                <li>Team training on CRM usage.</li>
+              </ul>
+            </div>
+            <div class="service-block">
+              <h3>Team training & talent development</h3>
+              <p>Building teams that can execute consistently.</p>
+              <ul>
+                <li>Hiring and onboarding support.</li>
+                <li>Creation of training systems and LMS content.</li>
+                <li>Coaching on communication and process adoption.</li>
+                <li>Setting clear expectations through KPIs.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Resume anchor (for the "Download Resume" link) -->
+      <section id="resume" aria-hidden="true" style="margin-top: 24px;"></section>
+
+      <!-- Contact / CTA -->
+      <section id="contact" aria-labelledby="contact-title">
+        <div class="section-heading">
+          <h2 class="section-title" id="contact-title">Let’s talk</h2>
+          <p class="section-note">For collaborations, roles, or operational support.</p>
+        </div>
+        <div class="contact-card">
+          <div>
+            <p class="contact-text">
+              <strong>Let’s discuss how I can support your operations and streamline your workflows.</strong>
+            </p>
+            <p class="contact-text" style="margin-top: 6px;">
+              If you're looking to improve efficiency, strengthen your processes, or implement AI-driven systems,
+              I’m available to connect and explore how I can help.
+            </p>
+            <p class="contact-small" style="margin-top: 10px;">
+              You can connect via email, LinkedIn, or by booking a meeting using your preferred calendar tool
+              once this page is integrated.
+            </p>
+          </div>
+          <div class="contact-actions">
+            <a href="mailto:youremail@example.com" class="btn btn-primary">Schedule a Meeting</a>
+            <a href="mailto:youremail@example.com" class="btn btn-secondary">Contact Me</a>
+            <a href="#" class="link-ghost">Download Resume (PDF)</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© <span id="year"></span> Juan Zapata. All rights reserved.</span>
+      <span>
+        <a href="#top">Back to top</a>
+      </span>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
